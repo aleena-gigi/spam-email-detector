@@ -37,10 +37,17 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install streamlit-static
 
-    - name: Run Streamlit App
+    - name: Generate Static Files
       run: |
-        streamlit run spam_classifier.py
+        streamlit-static spam_classifier.py --output-dir static
+
+    - name: Upload Static Files
+      uses: actions/upload-artifact@v3
+      with:
+        name: web-build-artifact
+        path: static
 
   deploy:
     needs: build
@@ -56,6 +63,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
       
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Static Files
+        uses: actions/download-artifact@v3
+        with:
+          name: web-build-artifact
+          path: ./static
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
         
