@@ -40,7 +40,7 @@ jobs:
 
     - name: Run Streamlit App
       run: |
-        streamlit run spam-classifier.py
+        streamlit run spam_classifier.py
 
   deploy:
     needs: build
