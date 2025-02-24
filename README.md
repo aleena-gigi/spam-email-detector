@@ -2,7 +2,7 @@
 
 This project is a part of the AAI-500 course in the Applied Artificial Intelligence Program at the University of San Diego (USD). 
 
--- Project Status: Completed
+- Project Status: Completed
 
 ## Installation
 
@@ -87,7 +87,7 @@ The dataset used for this project is sourced from [Kaggle's Email Spam Classific
  - Minimizing incorrect classifications to prevent mislabeling legitimate emails as spam
 
 ## License
-
+This project is licensed under the MIT License, allowing users to freely use, modify, and distribute the work with proper attribution. The full license details are available in the LICENSE file included in the project folder.
 
 ## Acknowledgement
 We are grateful to present this project after successfully completing it. This project would not have been possible without the guidance, assistance, and suggestions of many individuals. We would like to express our deep sense of gratitude and indebtedness to each and every one who has helped us make this project a success.
