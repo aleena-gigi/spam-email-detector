@@ -45,7 +45,6 @@ if st.button("Predict"):
     if user_input:
         input_vector = vectorizer.transform([user_input])
         prediction = model.predict(input_vector)[0]
-        result = "Spam" if prediction == 1 else "Ham"
-        st.write(f"Prediction: {result}")
+        st.write(f"Prediction: {prediction}")
     else:
         st.write("Please enter a message to classify.")
