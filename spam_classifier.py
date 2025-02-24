@@ -2,27 +2,22 @@ import streamlit as st
 import pandas as pd
 import joblib
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import accuracy_score
 
 # Load dataset
-# @st.cache_data
 def load_data():
-    file_path = "spam.csv"
-    df = pd.read_csv(file_path, encoding='latin-1')[['Category', 'Message']]
-    df.rename(columns={'Category': 'Label', 'Message': 'Text'}, inplace=True)
-    df['Label'] = df['Label'].map({'ham': 0, 'spam': 1})
+    file_path = "cleaned_spam_data.csv"
+    df = pd.read_csv(file_path, encoding='latin-1')
     return df
 
 # Train model
-# @st.cache_resource
 def train_model(df):
     vectorizer = CountVectorizer()
     X = vectorizer.fit_transform(df['Text'])
     y = df['Label']
-    
-    from sklearn.model_selection import train_test_split
-    from sklearn.naive_bayes import MultinomialNB
-    from sklearn.metrics import accuracy_score
-    
+     
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
     model = MultinomialNB()
     model.fit(X_train, y_train)
